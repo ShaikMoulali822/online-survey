@@ -1,0 +1,292 @@
+import React from "react";
+import { experimentalStyled as styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  TextField,
+} from "@mui/material";
+import { useState } from "react";
+import { Female, Male } from "@mui/icons-material";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(2),
+  textAlign: "left",
+  color: theme.palette.text.secondary,
+}));
+
+const Text = () => {
+  let navigate = useNavigate();
+  const [userData, setUserData] = useState(
+    {
+      firstName: "",
+      Lastname: "",
+      Fathername: "",
+      Mothername: "",
+      date: "",
+      gender: "",
+      passout: "",
+      aadhar: "",
+      email: "",
+      mobileno: "",
+      collegename: "",
+      course: "",
+      branchname: "",
+      rollnumber: "",
+    },
+    []
+  );
+  const {
+    firstName,
+    Lastname,
+    Fathername,
+    Mothername,
+    date,
+    gender,
+    passout,
+    aadhar,
+    email,
+    mobileno,
+    collegename,
+    course,
+    branchname,
+    rollnumber,
+  } = userData;
+
+  const handleData = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
+  const submitData = async (e) => {
+    e.preventDefault();
+    console.log(userData);
+    await axios.post("http://localhost:8080/adduser/", userData);
+    setUserData({
+      firstName: "",
+      Lastname: "",
+      Fathername: "",
+      Mothername: "",
+      date: "",
+      gender: "",
+      passout: "",
+      aadhar: "",
+      email: "",
+      mobileno: "",
+      collegename: "",
+      course: "",
+      branchname: "",
+      rollnumber: "",
+    });
+    navigate("/");
+  };
+
+  return (
+    <>
+      <form onSubmit={(e) => submitData(e)}>
+        <Grid item xs={2} sm={3} md={3}>
+          <Item>
+            <div className="head">
+              <h1>ONLINE SURVEY APPLICATION</h1>
+            </div>
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 1, sm: 6, md: 12 }}
+            >
+              <Grid item xs={2} sm={12} md={12}>
+                <Item>
+                  <Stack spacing={12} direction="row">
+                    <Stack spacing={2} direction="column" width={300}>
+                      {/* <TextField label="First Name" name="firstName" value={firstName} /> */}
+                      <TextField
+                        label="First Name"
+                        name="firstName"
+                        type="text"
+                        variant="outlined"
+                        required
+                        autoFocus
+                        value={firstName}
+                        onChange={(e) => handleData(e)}
+                      />
+                      <TextField
+                        id="outlined-basic-last-name"
+                        label="Last Name"
+                        name="Lastname"
+                        type="text"
+                        variant="outlined"
+                        value={Lastname}
+                        onChange={(e) => handleData(e)}
+                      />
+                      <TextField
+                        id="outlined-basic"
+                        label="Father Name"
+                        name="Fathername"
+                        type="text"
+                        variant="outlined"
+                        value={Fathername}
+                        onChange={(e) => handleData(e)}
+                      />
+                      <TextField
+                        id="outlined-basic"
+                        label="Mother Name"
+                        name="Mothername"
+                        type="text"
+                        variant="outlined"
+                        value={Mothername}
+                        onChange={(e) => handleData(e)}
+                      />
+                      <TextField
+                        id="outlined-basic"
+                        label="Date of Birth"
+                        name="date"
+                        type="date"
+                        format="dd-mm-yyyy"
+                        variant="outlined"
+                        value={date}
+                        onChange={(e) => handleData(e)}
+                      />
+                      {/* Include other form fields */}
+                    </Stack>
+                    <Stack spacing={2} direction="column" width={300}>
+                      {/* Rest of your form */}
+                      <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">
+                          Gender
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          label="Gender"
+                          name="gender"
+                          value={gender}
+                          onChange={(e) => handleData(e)}
+                        >
+                          <MenuItem value={Male}>Male</MenuItem>
+                          <MenuItem value={Female}>Female</MenuItem>
+                          {/* <MenuItem value={Others}>Others</MenuItem>  */}
+                        </Select>
+                      </FormControl>
+
+                      <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label-pass-out">
+                          Passed out year
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label-pass-out-year"
+                          id="demo-simple-select-pass-out-year"
+                          label="Passed out Year"
+                          name="passout"
+                          value={passout}
+                          onChange={(e) => handleData(e)}
+                        >
+                          <MenuItem value="Select">Select</MenuItem>
+                          <MenuItem value="2020">2020</MenuItem>
+                          <MenuItem value="2021">2021</MenuItem>
+                          <MenuItem value="2022">2022</MenuItem>
+                          <MenuItem value="2023">2023</MenuItem>
+                          <MenuItem value="2024">2024</MenuItem>
+                          <MenuItem value="2025">2025</MenuItem>
+                          <MenuItem value="2026">2026</MenuItem>
+                          <MenuItem value="2027">2027</MenuItem>
+                        </Select>
+                      </FormControl>
+                      <TextField
+                        id="outlined-basic"
+                        label="Aadhar No"
+                        name="aadhar"
+                        type="number"
+                        variant="outlined"
+                        value={aadhar}
+                        onChange={(e) => handleData(e)}
+                      />
+
+                      <TextField
+                        id="outlined-basic"
+                        label="Email"
+                        name="email"
+                        type="email"
+                        variant="outlined"
+                        value={email}
+                        onChange={(e) => handleData(e)}
+                      />
+                      <TextField
+                        id="outlined-basic"
+                        label="Mobile No"
+                        name="mobileno"
+                        type="number"
+                        variant="outlined"
+                        value={mobileno}
+                        onChange={(e) => handleData(e)}
+                      />
+                    </Stack>
+                    <Stack spacing={2} direction="column" width={300}>
+                      {/* Rest of your form */}
+
+                      <div className="head1">
+                        <h2>College Details</h2>
+                      </div>
+                      <TextField
+                        id="outlined-basic"
+                        label="College Name"
+                        name="collegename"
+                        type="text"
+                        variant="outlined"
+                        placeholder=" Enter College Name"
+                        value={collegename}
+                        onChange={(e) => handleData(e)}
+                      />
+                      <TextField
+                        id="outlined-basic"
+                        label="CourseName"
+                        name="course"
+                        type="text"
+                        variant="outlined"
+                        placeholder=" Enter Course Name"
+                        value={course}
+                        onChange={(e) => handleData(e)}
+                      />
+                      <TextField
+                        id="outlined-basic"
+                        label="Branch Name"
+                        name="branchname"
+                        type="Text"
+                        variant="outlined"
+                        placeholder=" Enter Branch Name"
+                        value={branchname}
+                        onChange={(e) => handleData(e)}
+                      />
+
+                      <TextField
+                        id="outlined-basic"
+                        label="Roll Number"
+                        name="rollnumber"
+                        type="text"
+                        variant="outlined"
+                        placeholder="EX:202P1A05C6"
+                        value={rollnumber}
+                        onChange={(e) => handleData(e)}
+                      />
+                    </Stack>
+                  </Stack>
+                </Item>
+              </Grid>
+            </Grid>
+            {/* <Button variant="contained" onClick={submitData}>
+              Submit
+            </Button> */}
+          </Item>
+        </Grid>
+      </form>
+    </>
+  );
+};
+export default Text;

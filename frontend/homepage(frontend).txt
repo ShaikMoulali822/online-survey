@@ -1,0 +1,84 @@
+import React from "react";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
+const Homepage = () => {
+  const navigate = useNavigate();
+  const goText = () => {
+    navigate("/Text");
+  };
+  return (
+    <div className="ali3">
+      <div className="ali">
+        <h1>ONLINE SURVEY APPLICATIONS</h1>
+      </div>
+      <p>
+        An online survey application is a software tool or platform that enables
+        users to create, distribute, and collect responses for surveys over the
+        internet. It provides a convenient and efficient way to gather data and
+        feedback from a wide range of participants, regardless of their
+        location.
+      </p>
+      <div className="ali1">
+        <h2>
+          features and functionalities typically found in online survey
+          applications:
+        </h2>
+      </div>
+      <p>
+        1.Survey Creation: Users can create custom surveys using a variety of
+        question types such as multiple-choice, open-ended, rating scales,
+        Likert scales, and more. The application usually provides a
+        user-friendly interface to design and customize the survey layout and
+        appearance.
+      </p>
+      <p>
+        2.Distribution Options: Online survey applications offer various
+        distribution methods to reach the target audience. These include email
+        invitations, social media sharing, website embedding, and direct links.
+        Some applications also support offline data collection through mobile
+        devices.
+      </p>
+      <p>
+        3.Response Collection: Participants can access the survey through a web
+        link and provide their responses online. The application ensures data
+        integrity and often includes features like response validation, skip
+        logic, and branching to guide participants through the survey based on
+        their answers
+      </p>
+      <p>
+        4.Data Analysis: Once responses are collected, the survey application
+        offers tools to analyze and interpret the data. This may include
+        features such as real-time reporting, graphical representations (charts,
+        graphs), filtering and segmentation, cross-tabulation, and exporting
+        data for further analysis.
+      </p>
+      <p>
+        5.Collaboration and Sharing: Online survey applications often provide
+        collaboration features, allowing multiple users to work on a survey
+        simultaneously. It may also offer options to share survey results with
+        team members or stakeholders securely.
+      </p>
+      <p>
+        6.Customization and Branding: Users can usually customize the survey's
+        appearance and branding, including colors, logos, and themes, to align
+        with their organization's identity. This feature helps create a cohesive
+        and professional survey experience.
+      </p>
+      <p>
+        7.Survey Templates: Many survey applications offer pre-built templates
+        for commonly used surveys, such as customer satisfaction, employee
+        feedback, market research, and event feedback. These templates serve as
+        a starting point and can be modified according to specific needs.
+      </p>
+      ;
+      <div className="ali5">
+        <Button variant="contained" color="success" onClick={goText}>
+          CLICK HERE
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default Homepage;
